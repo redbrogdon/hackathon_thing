@@ -33,6 +33,10 @@ class JournalEntry {
   final DateTime createdAt;
   final DateTime updatedAt;
   final List<String> tags;
+  final String? location;
+  final String? imageUrl;
+  final bool isFavorite;
+  final String? mood;
 
   JournalEntry({
     required this.id,
@@ -41,6 +45,10 @@ class JournalEntry {
     required this.createdAt,
     required this.updatedAt,
     required this.tags,
+    this.location,
+    this.imageUrl,
+    this.isFavorite = false,
+    this.mood,
   });
 
   /// Creates a copy of this JournalEntry with some fields replaced.
@@ -49,6 +57,10 @@ class JournalEntry {
     String? content,
     DateTime? updatedAt,
     List<String>? tags,
+    String? location,
+    String? imageUrl,
+    bool? isFavorite,
+    String? mood,
   }) {
     return JournalEntry(
       id: this.id,
@@ -57,6 +69,10 @@ class JournalEntry {
       createdAt: this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       tags: tags ?? this.tags,
+      location: location ?? this.location,
+      imageUrl: imageUrl ?? this.imageUrl,
+      isFavorite: isFavorite ?? this.isFavorite,
+      mood: mood ?? this.mood,
     );
   }
 
@@ -69,6 +85,10 @@ class JournalEntry {
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       tags: List<String>.from(json['tags'] as List),
+      location: json['location'] as String?,
+      imageUrl: json['imageUrl'] as String?,
+      isFavorite: json['isFavorite'] as bool? ?? false,
+      mood: json['mood'] as String?,
     );
   }
 
@@ -81,6 +101,10 @@ class JournalEntry {
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt.toIso8601String(),
       'tags': tags,
+      'location': location,
+      'imageUrl': imageUrl,
+      'isFavorite': isFavorite,
+      'mood': mood,
     };
   }
 }
@@ -114,14 +138,17 @@ A central provider holds the state and provides methods to manipulate it:
   - `List<JournalEntry> _entries`: All loaded journal entries.
   - `String _searchQuery`: The active filter text.
   - `SortOption _currentSort`: The active sorting criteria.
+  - `String? _activeMoodFilter`: The active mood/tag quick filter selection (e.g., "Joyful", "Reflective").
 - **Getters**:
-  - `List<JournalEntry> get filteredAndSortedEntries`: Returns the entries filtered by `_searchQuery` (checking title, content, and tags) and sorted according to `_currentSort`.
+  - `List<JournalEntry> get filteredAndSortedEntries`: Returns the entries filtered by `_searchQuery` (matching against title, content, location, mood, and tags) and filtered by `_activeMoodFilter` (matching entries with the selected mood/tag), then sorted according to `_currentSort`.
 - **Operations**:
   - `loadEntries()`: Reads JSON file and decodes entries.
   - `addEntry(JournalEntry entry)`: Appends an entry, saves to JSON, and notifies listeners.
   - `updateEntry(JournalEntry entry)`: Finds and replaces an entry, saves to JSON, and notifies listeners.
   - `deleteEntry(String id)`: Removes an entry by ID, saves to JSON, and notifies listeners.
-  - `setSearchQuery(String query)`: Updates query and notifies listeners.
+  - `toggleFavorite(String id)`: Toggles the `isFavorite` property of the entry, saves to JSON, and notifies listeners.
+  - `setSearchQuery(String query)`: Updates search query and notifies listeners.
+  - `setActiveMoodFilter(String? mood)`: Updates the active quick filter and notifies listeners.
   - `setSortOption(SortOption option)`: Updates sort and notifies listeners.
 
 ---

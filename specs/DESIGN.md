@@ -1295,3 +1295,56 @@ journaling app that has a list of journal entries, and then a page for details o
   }
 }
 ```
+
+---
+
+### 2. View entry
+
+- Frame ID: `view_entry_frame`
+- Description: A read-only detail view of a journal entry, presenting title, metadata, location, body content, and attachments in an immersive paper-like viewport.
+
+#### Key UI Elements (from screenshots)
+- **Top Navigation Bar**:
+  - Left button: Retro rectangular border container enclosing a back arrow (`Icons.arrow_back`).
+  - Center title: Entry date (primary font, `Special Elite`, capitalized, e.g., "OCTOBER 24, 1994") and Entry ID/counter below it (secondary font, `Courier Prime`, e.g., "Entry #442").
+  - Right button: Retro rectangular border container enclosing a three-dot options menu (`Icons.more_vert`).
+- **Journal Canvas Card**:
+  - Background color: `surface` (`#FCF9F2`) with outline border (`#8B7E74`, width 2) and drop shadow (`md`).
+  - Top header: Red map pin (`Icons.location_on`, color: `accent` `#C25E5E`) with location name (secondary text, `Courier Prime`, e.g., "The Old Library, Rainy Day").
+  - Title: Large header (primary font, `Special Elite`, e.g., "The smell of old books and wet pavement.").
+  - Divider: Soft horizontal line separating title from text body.
+  - Body Content: Typewriter style body text (secondary font, `Courier Prime`, spacing `md`).
+  - Image preview: Embedded landscape image with rounded borders at the bottom of the card content.
+- **Bottom Navigation/Action Bar**:
+  - Edit button: Wide pill-like button labeled "Edit Thoughts" (with pen icon on left) styled in cream background with dark outlines.
+  - Favorite button: Square button with a heart icon (solid pinkish accent `#C25E5E` background, white heart icon).
+
+---
+
+### 3. List entries
+
+- Frame ID: `list_entries_frame`
+- Description: The homepage displaying all recent entries, with filtering pills, search functionality, and a floating "New Entry" button.
+
+#### Key UI Elements (from screenshots)
+- **Header Section**:
+  - App Title: Large display title (primary font, `Special Elite`, "Peejays") with subtitle below (secondary font, `Courier Prime`, "Your life, one page at a time.").
+  - Profile Avatar: Circular avatar in dark primary color (`#4A3B33`) displaying initials in white mono font ("JD").
+- **Search Bar**:
+  - Framed rectangular input container with search icon (`Icons.search`) and hint text "Search your memories...".
+- **Filter Pills**:
+  - Horizontal scrollable strip of mood/tag pills:
+    - Active pill (e.g., "All"): Dark primary background (`#4A3B33`) with white text.
+    - Inactive pills (e.g., "Joyful", "Reflective"): Light secondary background (`#EBE3D5`) with dark text and small mood emojis/icons.
+- **Entries Feed**:
+  - Header: Section title "Recent Entries" styled in bold typewriter font.
+  - Card Feed: List of cards styled with `surface` background (`#FCF9F2`), outline border, and drop shadow.
+    - Top Row: Creation date (left, e.g., "October 24, 1974") and mood tag pill (right, e.g., "Pensive" with face icon).
+    - Headline: Entry Title (large bold typewriter font).
+    - Image: Optional attached landscape photo.
+    - Body: Content text preview snippet, truncated with ellipsis.
+    - Bottom Row: Location pin and location name (left, e.g. "Brooklyn, NY") and navigation arrow (right, `Icons.arrow_forward`).
+- **Compose Button**:
+  - Float/action button positioned at the bottom right. A rounded black pill containing an edit icon and text label "New Entry".
+
+```
