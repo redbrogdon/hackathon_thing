@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:html' as html;
+import 'package:web/web.dart' as web;
 import '../models/journal_entry.dart';
 import 'journal_storage_stub.dart';
 
@@ -9,7 +9,7 @@ class WebJournalStorage implements JournalStorage {
   @override
   Future<List<JournalEntry>> loadEntries() async {
     try {
-      final contents = html.window.localStorage[_storageKey];
+      final contents = web.window.localStorage.getItem(_storageKey);
       if (contents == null || contents.isEmpty) {
         return [];
       }
@@ -24,7 +24,7 @@ class WebJournalStorage implements JournalStorage {
   Future<void> saveEntries(List<JournalEntry> entries) async {
     try {
       final jsonList = entries.map((e) => e.toJson()).toList();
-      html.window.localStorage[_storageKey] = jsonEncode(jsonList);
+      web.window.localStorage.setItem(_storageKey, jsonEncode(jsonList));
     } catch (e) {
       // Handle web localstorage quota errors
     }

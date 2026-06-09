@@ -1,5 +1,4 @@
 import '../models/journal_entry.dart';
-import 'journal_storage_stub.dart' hide getStorage;
 import 'journal_storage_stub.dart'
     if (dart.library.html) 'journal_storage_web.dart'
     if (dart.library.io) 'journal_storage_io.dart';

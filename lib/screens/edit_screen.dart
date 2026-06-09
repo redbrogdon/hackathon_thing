@@ -93,6 +93,7 @@ class _EditScreenState extends State<EditScreen> {
         });
       }
     } catch (e) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Failed to pick image.')),
       );
@@ -356,7 +357,7 @@ class _EditScreenState extends State<EditScreen> {
                             decoration: InputDecoration(
                               hintText: 'A name for this moment...',
                               hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.outline.withOpacity(0.6),
+                                color: theme.colorScheme.outline.withValues(alpha: 0.6),
                               ),
                               border: InputBorder.none,
                               isDense: true,
@@ -420,7 +421,7 @@ class _EditScreenState extends State<EditScreen> {
                             decoration: InputDecoration(
                               hintText: 'Where are you writing this?',
                               hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.outline.withOpacity(0.6),
+                                color: theme.colorScheme.outline.withValues(alpha: 0.6),
                               ),
                               border: InputBorder.none,
                               isDense: true,
@@ -461,7 +462,7 @@ class _EditScreenState extends State<EditScreen> {
                             decoration: InputDecoration(
                               hintText: 'The ink is fresh and the day is young. What stories will you tell?',
                               hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.outline.withOpacity(0.6),
+                                color: theme.colorScheme.outline.withValues(alpha: 0.6),
                               ),
                               border: InputBorder.none,
                               isDense: true,
@@ -568,7 +569,7 @@ class _EditScreenState extends State<EditScreen> {
                                   });
                                 },
                                 child: Container(
-                                  color: Colors.black.withOpacity(0.6),
+                                  color: Colors.black.withValues(alpha: 0.6),
                                   padding: const EdgeInsets.all(4),
                                   child: const Icon(Icons.delete, color: Colors.white, size: 20),
                                 ),
@@ -651,9 +652,9 @@ class _EditScreenState extends State<EditScreen> {
       return Image.memory(uri.data!.contentAsBytes(), fit: BoxFit.cover);
     } else {
       if (kIsWeb) {
-        return Image.network(path, fit: BoxFit.cover, errorBuilder: (_, __, ___) => const SizedBox.shrink());
+        return Image.network(path, fit: BoxFit.cover, errorBuilder: (_, _, _) => const SizedBox.shrink());
       } else {
-        return Image.file(File(path), fit: BoxFit.cover, errorBuilder: (_, __, ___) => const SizedBox.shrink());
+        return Image.file(File(path), fit: BoxFit.cover, errorBuilder: (_, _, _) => const SizedBox.shrink());
       }
     }
   }

@@ -170,7 +170,7 @@ class ViewScreen extends StatelessWidget {
                       Text(
                         entry.content,
                         style: theme.textTheme.bodyLarge?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.9),
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.9),
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -271,9 +271,9 @@ class ViewScreen extends StatelessWidget {
       return Image.memory(uri.data!.contentAsBytes(), fit: BoxFit.fitWidth);
     } else {
       if (kIsWeb) {
-        return Image.network(path, fit: BoxFit.fitWidth, errorBuilder: (_, __, ___) => const SizedBox.shrink());
+        return Image.network(path, fit: BoxFit.fitWidth, errorBuilder: (_, _, _) => const SizedBox.shrink());
       } else {
-        return Image.file(File(path), fit: BoxFit.fitWidth, errorBuilder: (_, __, ___) => const SizedBox.shrink());
+        return Image.file(File(path), fit: BoxFit.fitWidth, errorBuilder: (_, _, _) => const SizedBox.shrink());
       }
     }
   }

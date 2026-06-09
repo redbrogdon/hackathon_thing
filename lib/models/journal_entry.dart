@@ -35,7 +35,7 @@ class JournalEntry {
     String? mood,
   }) {
     return JournalEntry(
-      id: this.id,
+      id: id,
       title: title ?? this.title,
       content: content ?? this.content,
       createdAt: createdAt ?? this.createdAt,

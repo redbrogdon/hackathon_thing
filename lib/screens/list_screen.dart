@@ -70,7 +70,7 @@ class _ListScreenState extends State<ListScreen> {
                             Text(
                               'Your life, one page at a time.',
                               style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onBackground.withOpacity(0.7),
+                                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -124,7 +124,7 @@ class _ListScreenState extends State<ListScreen> {
                                   decoration: InputDecoration(
                                     hintText: 'Search your memories...',
                                     hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                                      color: theme.colorScheme.outline.withOpacity(0.7),
+                                      color: theme.colorScheme.outline.withValues(alpha: 0.7),
                                     ),
                                     border: InputBorder.none,
                                     isDense: true,
@@ -309,7 +309,7 @@ class _ListScreenState extends State<ListScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.auto_stories_outlined, size: 64, color: theme.colorScheme.outline.withOpacity(0.5)),
+            Icon(Icons.auto_stories_outlined, size: 64, color: theme.colorScheme.outline.withValues(alpha: 0.5)),
             const SizedBox(height: 16),
             Text(
               'No journal entries found.',
@@ -413,7 +413,7 @@ class _ListScreenState extends State<ListScreen> {
                     ? '${entry.content.substring(0, 97)}...'
                     : entry.content,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.85),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.85),
                 ),
               ),
               const SizedBox(height: 16),
@@ -459,9 +459,9 @@ class _ListScreenState extends State<ListScreen> {
       return Image.memory(uri.data!.contentAsBytes(), fit: BoxFit.cover);
     } else {
       if (kIsWeb) {
-        return Image.network(path, fit: BoxFit.cover, errorBuilder: (_, __, ___) => const SizedBox.shrink());
+        return Image.network(path, fit: BoxFit.cover, errorBuilder: (_, _, _) => const SizedBox.shrink());
       } else {
-        return Image.file(File(path), fit: BoxFit.cover, errorBuilder: (_, __, ___) => const SizedBox.shrink());
+        return Image.file(File(path), fit: BoxFit.cover, errorBuilder: (_, _, _) => const SizedBox.shrink());
       }
     }
   }
