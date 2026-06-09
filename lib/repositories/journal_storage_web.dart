@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:web/web.dart' as web;
 import '../models/journal_entry.dart';
 import 'journal_storage_stub.dart';
+export 'journal_storage_stub.dart';
 
 class WebJournalStorage implements JournalStorage {
   static const _storageKey = 'peejays_journal_entries';

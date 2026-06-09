@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import '../models/journal_entry.dart';
 import 'journal_storage_stub.dart';
+export 'journal_storage_stub.dart';
 
 class IoJournalStorage implements JournalStorage {
   Future<File> get _localFile async {
